@@ -1,0 +1,16 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Wayne Luke
+	email = wayneluke@icloud.com
+[maintenance]
+	repo = /Users/koleckai/.config/zsh/plugins/znap
+	repo = /Users/koleckai/.config/zsh/plugins/MichaelAquilina/zsh-you-should-use
+	repo = /Users/koleckai/.config/zsh/plugins/zdharma-continuum/fast-syntax-highlighting
+	repo = /Users/koleckai/.config/zsh/plugins/zsh-users/zsh-autosuggestions
+	repo = /Users/koleckai/.config/zsh/plugins/zsh-users/zsh-history-substring-search
+[init]
+	defaultBranch = primary

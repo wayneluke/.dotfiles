@@ -1,0 +1,30 @@
+  # Ensure a directory argument is provided.
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: force_dir_to_start_of_path <directory>"
+    return 1
+  fi
+
+  local target="$1"
+
+  # Check for illegal colon characters as ':' is used as the PATH separator.
+  if [[ "$target" == *:* ]]; then
+    echo "Warning: '$target' contains an illegal character ':' and cannot be processed." >&2
+    return 1
+  fi
+
+  # Optionally check if the directory exists.
+  if [[ ! -d "$target" ]]; then
+    echo "Warning: '$target' is not a valid directory." >&2
+    return 1
+  fi
+
+  # Create a new array excluding any existing instances of the target directory.
+  local new_path=()
+  for dir in "${path[@]}"; do
+    if [[ "$dir" != "$target" ]]; then
+      new_path+=("$dir")
+    fi
+  done
+
+  # Prepend the target directory to the beginning of the new array.
+  path=("$target" "${new_path[@]}")

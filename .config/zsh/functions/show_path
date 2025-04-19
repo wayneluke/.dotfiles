@@ -1,0 +1,6 @@
+  echo "Current PATH directories:"
+  local i=1
+  for dir in "${path[@]}"; do
+    echo "  $i) $dir"
+    ((i++))
+  done

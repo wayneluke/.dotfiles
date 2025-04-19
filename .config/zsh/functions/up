@@ -1,0 +1,9 @@
+  num_levels="${1:-1}" # Default to 1 level if no argument is given
+  if [[ ! "$num_levels" =~ ^[0-9]+$ ]]; then
+    echo "Error: Argument must be a non-negative integer."
+    return 1
+  fi
+  
+  for ((i = 0; i < num_levels; i++)); do
+    cd ..
+  done

@@ -1,0 +1,9 @@
+    local dir=$1
+
+    # Remove .DS_Store files in the current directory
+    find "$dir" -type f -name .DS_Store -exec rm -f {} \;
+
+    # Recursively call the function for subdirectories
+    for sub_dir in "$dir"/*(/); do
+        delete_ds_store_files "$sub_dir"
+    done

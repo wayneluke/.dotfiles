@@ -1,0 +1,20 @@
+    declare -A config_files=(
+        [zsh]="$ZDOTDIR/.zshrc"
+        [vim]="$HOME/.vimrc"
+        [git]="$HOME/.gitconfig"
+        [httpd]="/opt/homebrew/etc/httpd/httpd.conf"
+        [sites]="/opt/homebrew/etc/httpd/sites"
+        [hosts]="/etc/hosts"
+        [starship]="$HOME/.config/starship.toml"
+    )
+
+    if [[ -n "${config_files[$1]}" ]]; then
+        if [[ "$1" == "hosts" ]]; then
+            sudo micro "${config_files[$1]}"
+        else
+            zed "${config_files[$1]}"
+        fi
+    else
+        echo "Usage: config {zsh|vim|git|httpd|sites|hosts|starship}"
+        return 1
+    fi

@@ -1,0 +1,27 @@
+  # Ensure that a directory argument is provided.
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: move_dir_to_end_of_path <directory>"
+    return 1
+  fi
+
+  local target="$1"
+
+  # Check for illegal colon characters in the provided directory.
+  if [[ "$target" == *:* ]]; then
+    echo "Warning: '$target' contains an illegal character ':' and cannot be processed." >&2
+    return 1
+  fi
+
+  # Verify that the directory is in the PATH array.
+  if [[ ${path[(I)$target]} -eq 0 ]]; then
+    echo "Directory '$target' is not currently in PATH." >&2
+    return 1
+  fi
+
+  # Create a new array excluding the target directory.
+  local new_path=()
+  for dir in "${path[@]}"; do
+    if [[ "$dir" != "$target" ]]; then
+      new_path+=("$dir")
+    fi
+  done
