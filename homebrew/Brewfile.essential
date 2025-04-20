@@ -1,0 +1,77 @@
+tap "alienator88/cask"
+tap "buo/cask-upgrade"
+tap "homebrew/bundle"
+tap "homebrew/command-not-found"
+tap "homebrew/services"
+tap "shivammathur/php"
+
+# Core Development Tools
+brew "git"
+brew "gh"
+brew "zsh"
+brew "coreutils"
+brew "wget"
+brew "tmux"
+brew "openssl"
+brew "pkg-config"
+
+# Web Development - Backend
+brew "node"
+brew "nvm"
+brew "php"
+brew "composer"
+brew "httpd"
+brew "nginx"
+brew "mysql"
+brew "postgresql"
+brew "redis"
+brew "sqlite"
+
+# MongoDB (via tap)
+tap "mongodb/brew"
+brew "mongodb/brew/mongodb-community"
+
+# Web Development - Frontend
+brew "yarn"
+brew "pnpm"
+brew "tailwindcss"
+
+# Web Development - Hugo
+brew "go"
+brew "hugo"
+
+# Python Development
+brew "python@3.12"
+brew "pyenv"
+brew "pipx"
+brew "poetry"
+brew "virtualenv"
+brew "ipython"
+
+# Rust Development
+brew "rustup-init"
+brew "rust-analyzer"
+brew "cargo-edit"
+brew "ripgrep"
+brew "fd"
+brew "bat"
+brew "eza"  
+
+# Testing and Utilities
+brew "jq"
+brew "httpie"
+brew "htop"
+brew "watch"
+
+# Optional/Advanced Tools
+brew "docker"
+brew "kubectl"
+brew "deno"
+
+# Environment
+brew "starship"
+brew "zoxide"
+brew "mas"
+brew "neovim"
+cask "zed"
+cask "firefox"
