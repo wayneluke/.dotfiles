@@ -230,6 +230,47 @@ link_common_directories() {
 }
 
 #==============================#
+#       Generate SSH Key       #
+#==============================#
+
+create_github_ssh_key() {
+  log title "GitHub SSH Key Setup"
+
+  local ssh_dir="$HOME/.ssh"
+  local key_file="$ssh_dir/gh_ed25519"
+  local email
+
+  if [[ -f "$key_file" ]]; then
+    log success "SSH key already exists at $key_file"
+  else
+    echo -n "Enter your GitHub email address: "
+    read email
+
+    if [[ -z "$email" ]]; then
+      log error "Email is required. Aborting."
+      return
+    fi
+
+    mkdir -p "$ssh_dir"
+    chmod 700 "$ssh_dir"
+
+    ssh-keygen -t ed25519 -C "$email" -f "$key_file" -N ""
+    log success "SSH key generated at $key_file"
+
+    eval "$(ssh-agent -s)"
+    ssh-add "$key_file"
+
+    log success "SSH key added to agent"
+  fi
+
+  echo
+  log info "Here is your public key (add it to GitHub):"
+  echo
+  cat "$key_file.pub"
+  echo
+}
+
+#==============================#
 #         Main Menu            #
 #==============================#
 
@@ -242,7 +283,8 @@ main_menu() {
   echo "  3) Copy config files only"
   echo "  4) Copy local files only"
   echo "  5) Link common directories (sites, files, customer, projects)"
-  echo "  Q) Quit"
+  echo "  6) Create GitHub SSH key"
+  echo "  7) Quit"
   echo -n "Enter your choice [1]: "
   read main_choice
 
@@ -250,13 +292,15 @@ main_menu() {
     2) run_brewfile_menu ;;
     3) copy_config_files ;;
     4) copy_local_files ;;
-    Q) log info "Exiting..." && return ;;
+    5) link_common_directories ;;
+    6) create_github_ssh_key ;;
+    7) log info "Exiting..."; return ;;
     *)
-      check_git_installed
-      check_homebrew_installed
       run_brewfile_menu
       copy_config_files
       copy_local_files
+      link_common_directories
+      create_github_ssh_key
       ;;
   esac
 }
@@ -265,4 +309,7 @@ main_menu() {
 #         Entry Point          #
 #==============================#
 
+log_box "Initializing System"
+check_git_installed
+check_homebrew_installed
 main_menu
