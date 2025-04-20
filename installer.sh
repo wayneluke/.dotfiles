@@ -187,25 +187,46 @@ copy_config_files() {
 link_common_directories() {
   log title "Creating Common Symlinks"
 
-  local targets=(Sites Files Customers Projects)
+  local targets=(Sites Files Customer Projects)
   local base_dir="/volumes/secondary/"
   local home_dir="$HOME"
+  local backup_dir="$home_dir/.backup_links/$(date +%Y%m%d-%H%M%S)"
 
   for dir in "${targets[@]}"; do
     local target_path="$base_dir/$dir"
     local link_path="$home_dir/$dir"
 
-    if [[ -e "$link_path" && ! -L "$link_path" ]]; then
-      log warning "$link_path exists and is not a symlink. Skipping."
-    elif [[ -L "$link_path" ]]; then
-      log info "$link_path already exists as a symlink. Skipping."
-    elif [[ -d "$target_path" ]]; then
+    if [[ ! -d "$target_path" ]]; then
+      log warning "Target $target_path does not exist. Skipping."
+      continue
+    fi
+
+    if [[ -L "$link_path" ]]; then
+      local resolved="$(readlink "$link_path")"
+      if [[ "$resolved" == "$target_path" ]]; then
+        log info "$link_path is already a valid symlink. Skipping."
+      else
+        log warning "$link_path is a symlink to the wrong location. Backing up and replacing."
+        mkdir -p "$backup_dir"
+        mv "$link_path" "$backup_dir/"
+        ln -s "$target_path" "$link_path"
+        log success "Re-linked $link_path → $target_path"
+      fi
+    elif [[ -e "$link_path" ]]; then
+      log warning "$link_path exists as a real directory. Backing up and replacing."
+      mkdir -p "$backup_dir"
+      mv "$link_path" "$backup_dir/"
       ln -s "$target_path" "$link_path"
       log success "Linked $link_path → $target_path"
     else
-      log warning "Target $target_path not found. Skipping."
+      ln -s "$target_path" "$link_path"
+      log success "Linked $link_path → $target_path"
     fi
   done
+
+  if [[ -d "$backup_dir" ]]; then
+    log info "Backups saved in: $backup_dir"
+  fi
 }
 
 #==============================#
