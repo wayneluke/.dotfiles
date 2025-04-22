@@ -1,2 +1,2 @@
 /config/zsh/secrets/*.zsh
-!/config/zsh/secrets/.gitkeep
+!.gitkeep
