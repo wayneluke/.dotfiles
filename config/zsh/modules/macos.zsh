@@ -19,5 +19,7 @@ if [ "$(uname)" = "Darwin" ]; then
   alias notes="open -a notes.app"
   alias calendar="open -a calendar.app"
   alias music="open -a music.app"
+  alias newtab='open -a iterm .'
   alias o="open -a"
+  alias preview='open -a preview'
 fi

@@ -5,10 +5,9 @@ alias cat='bat'
 alias grep='grep --color'
 alias guid='uuidgen | tr "[A-Z]" "[a-z]"'
 alias img='imgcat'
+alias man="batman"
 alias mkcd='(){mkdir -p "$1"; cd "$1"}'
 alias new='touch'
-alias newtab='open -a iterm .'
-alias preview='open -a preview'
 alias sysinfo='system_profiler SPSoftwareDataType'
 alias dotfiles='git --git-dir=$HOME/.dotfiles/'
 

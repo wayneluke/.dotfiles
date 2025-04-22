@@ -1,10 +1,11 @@
 # Homebrew
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
-
 if command -v brew >/dev/null 2>&1; then
+
+  ## Clean up Homebrew directory to prevent errors.
+  delete_ds_store_files /opt/*
+  
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
     export HOMEBREW_NO_ANALYTICS=1
     export HOMEBREW_NO_INSECURE_REDIRECT=1
     export HOMEBREW_AUTO_UPDATE_SECS=86400
