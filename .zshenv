@@ -1,10 +1,14 @@
 # Init Homebrew, Will fix the path later.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Set Directory Variables.
+# Define XDG Base directory environment variables
+export XDG_BIN_HOME="$HOME/local/bin"
+export XDG_CACHE_HOME="$HOME/Library/Caches"
 export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.local/cache"
+export XDG_DATA_HOME="$HOME/local/share"
+export XDG_RUNTIME_DIR="$TMPDIR/runtime-$UID"
+export XDG_STATE_HOME="$HOME/local/state"
+export PATH="$XDG_BIN_HOME:$PATH"
 
-# set the amazing ZDOTDIR variable
-export ZDOTDIR=$HOME/.config/zsh
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
