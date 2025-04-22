@@ -142,7 +142,7 @@ run_brewfile_menu() {
 
 copy_local_files() {
   local source_dir="./local"
-  local dest_dir="$HOME/.local"
+  local dest_dir="$HOME/local"
   local bin_dir="$dest_dir/bin"
 
   log title "Copying Local Files"
