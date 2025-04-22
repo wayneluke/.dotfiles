@@ -116,6 +116,7 @@ run_brewfile_menu() {
   echo "  3) Brews only"
   echo "  4) Casks only"
   echo "  5) Mac App Store (mas) only"
+  echo "  6) Fonts only"
   echo -n "Enter your choice [1]: "
   read choice
 
@@ -124,36 +125,46 @@ run_brewfile_menu() {
     3) install_brewfile "brews" ;;
     4) install_brewfile "casks" ;;
     5) install_brewfile "mas" ;;
+    6) install_brewfile "fonts" ;;
     *)  # Default to all
       install_brewfile "essential"
       install_brewfile "brews"
       install_brewfile "casks"
       install_brewfile "mas"
+      install_brewfile "fonts"
       ;;
   esac
 }
 
 #==============================#
-#        Config Copier         #
+#      Copy Local Files        #
 #==============================#
 
-copy_config_files() {
-  local source_dir="./config"
-  local dest_dir="$HOME/.config"
+copy_local_files() {
+  local source_dir="./local"
+  local dest_dir="$HOME/.local"
+  local bin_dir="$dest_dir/bin"
 
-  log title "Copying Configuration Files"
+  log title "Copying Local Files"
 
   if [[ -d "$source_dir" ]]; then
     mkdir -p "$dest_dir"
     cp -a "$source_dir/." "$dest_dir/"
-    log success "Config files copied to $dest_dir"
+    log success "Local files copied to $dest_dir"
+
+    if [[ -d "$bin_dir" ]]; then
+      chmod +x "$bin_dir"/* 2>/dev/null
+      log success "Made all files in $bin_dir executable"
+    else
+      log warning "No $bin_dir directory found. Skipping chmod."
+    fi
   else
     log warning "Source directory '$source_dir' not found. Skipping copy."
   fi
 }
 
 #==============================#
-#         Local Copier         #
+#      Copy Config Files       #
 #==============================#
 
 copy_config_files() {
@@ -237,7 +248,7 @@ create_github_ssh_key() {
   log title "GitHub SSH Key Setup"
 
   local ssh_dir="$HOME/.ssh"
-  local key_file="$ssh_dir/gh_ed25519"
+  local key_file="$ssh_dir/id_ed25519"
   local email
 
   if [[ -f "$key_file" ]]; then
@@ -283,8 +294,9 @@ main_menu() {
   echo "  3) Copy config files only"
   echo "  4) Copy local files only"
   echo "  5) Link common directories (sites, files, customer, projects)"
-  echo "  6) Create GitHub SSH key"
-  echo "  7) Quit"
+  echo "  6) Source install scripts"
+  echo "  7) Create GitHub SSH key"
+  echo "  8) Quit"
   echo -n "Enter your choice [1]: "
   read main_choice
 
@@ -293,13 +305,17 @@ main_menu() {
     3) copy_config_files ;;
     4) copy_local_files ;;
     5) link_common_directories ;;
-    6) create_github_ssh_key ;;
-    7) log info "Exiting..."; return ;;
+    6) source_install_scripts ;;
+    7) create_github_ssh_key ;;
+    8) log info "Exiting..."; return ;;
     *)
+      check_git_installed
+      check_homebrew_installed
       run_brewfile_menu
       copy_config_files
       copy_local_files
       link_common_directories
+      source_install_scripts      
       create_github_ssh_key
       ;;
   esac
