@@ -36,4 +36,4 @@ auto_update = true
 auto_update_interval_hours = 720
 
 [directories]
-cache_dir = "/users/koleckai/.cache/tealdeer"
+cache_dir = "/users/koleckai/.local/cache/tealdeer"
