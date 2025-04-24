@@ -60,13 +60,12 @@ done
 #######
 prepend_to_path $HOME/.local/bin $HOME/.composer/vendor/bin
 # Move Homebrew Paths to the beginning of the path array.
-start_of_path /opt/homebrew/sbin
-start_of_path /opt/homebrew/bin
+start_of_path /opt/homebrew/sbin /opt/homebrew/bin
 
-# load local system configuration if it exists
-if [ -f "$HOME/.zsh_local" ]; then
-  source "$HOME/.zsh_local"
-fi
+# load secrets configuration if it exists
+for file in $ZDOTDIR/secrets/*.zsh; do
+  [ -f "$file" ] && source "$file"
+done
 
 [[ -f $ZDOTDIR/aliases.zsh ]] && source $ZDOTDIR/aliases.zsh 
 
