@@ -68,14 +68,7 @@ for file in $ZDOTDIR/secrets/*.zsh; do
 done
 
 [[ -f $ZDOTDIR/aliases.zsh ]] && source $ZDOTDIR/aliases.zsh 
-
-# The completion system activation
-# https://gist.github.com/ctechols/ca1035271ad134841284
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
-else
-	compinit -C;
-fi;
+[[ -f $ZDOTDIR/completions.zsh ]] && source $ZDOTDIR/completions.zsh 
 
 ## TODO: Move the below to modules.
 # TealDeer (TLDR)
