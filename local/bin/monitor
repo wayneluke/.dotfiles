@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+# website="https://forums.rabidbadger.dev/index.php"
+website="${1:-https://forums.rabidbadger.dev}"
+user_agent="Mozilla/5.0 (Linux; Android 10; SM-G996U Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36"
+log_file="website_monitor.log"
+
+status_code=$(curl -s -o /dev/null -A "$user_agent" -I -w "%{http_code}" "$website")
+
+timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+
+if [[ "$status_code" -eq 200 ]]; then
+    echo "$timestamp - $website is up (Status: $status_code)" >> "$log_file"
+else
+    echo "$timestamp - $website is down or returned an error (Status: $status_code)" >> "$log_file"
+fi
