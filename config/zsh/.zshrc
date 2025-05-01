@@ -11,8 +11,6 @@ setopt NO_VERBOSE
 
 export EDITOR=nvim
 export VISUAL=zed
-export MICRO_TRUECOLOR=1
-
 
 #######
 ## Load Functions
