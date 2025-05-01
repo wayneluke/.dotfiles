@@ -10,9 +10,9 @@ setopt autocd autopushd
 setopt NO_VERBOSE
 
 export EDITOR=nvim
-export VISUAL=nvim
+export VISUAL=zed
 export MICRO_TRUECOLOR=1
-#export BAT_THEME="ansi"
+
 
 #######
 ## Load Functions
@@ -69,21 +69,6 @@ done
 
 [[ -f $ZDOTDIR/aliases.zsh ]] && source $ZDOTDIR/aliases.zsh 
 [[ -f $ZDOTDIR/completions.zsh ]] && source $ZDOTDIR/completions.zsh 
-
-## TODO: Move the below to modules.
-# TealDeer (TLDR)
-if (command -v tldr) &>/dev/null; then
-    export TEALDEER_CONFIG_DIR="$HOME/.config/tealdeer"
-fi
-
-if (command -v fzf) &>/dev/null; then
-    eval "$(fzf --zsh)"
-fi
-
-if (command -v fzf) &>/dev/null; then
-    eval "$(thefuck --alias fuck)"
-    alias wtf="fuck"
-fi
 
 ##############################################################################
 # Prompt https://starship.rs
