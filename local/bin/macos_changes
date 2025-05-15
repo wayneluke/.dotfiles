@@ -1,0 +1,31 @@
+#!/bin/bash
+
+OUTFILE="macos_system_settings_dump.txt"
+: > "$OUTFILE"
+
+echo "=== Systemsetup ===" >> "$OUTFILE"
+sudo systemsetup -gettimezone >> "$OUTFILE" 2>/dev/null
+sudo systemsetup -getnetworktimeserver >> "$OUTFILE" 2>/dev/null
+
+echo "=== Hostname Info ===" >> "$OUTFILE"
+scutil --get ComputerName >> "$OUTFILE"
+scutil --get LocalHostName >> "$OUTFILE"
+scutil --get HostName >> "$OUTFILE"
+
+echo "=== Power Management ===" >> "$OUTFILE"
+pmset -g custom >> "$OUTFILE"
+
+echo "=== NVRAM ===" >> "$OUTFILE"
+nvram -p >> "$OUTFILE"
+
+echo "=== Network Info ===" >> "$OUTFILE"
+networksetup -listallnetworkservices >> "$OUTFILE"
+networksetup -getinfo "Wi-Fi" >> "$OUTFILE" 2>/dev/null
+
+echo "=== User Defaults (Partial) ===" >> "$OUTFILE"
+defaults read >> "$OUTFILE"
+
+echo "=== Profiles ===" >> "$OUTFILE"
+profiles show >> "$OUTFILE" 2>/dev/null
+
+echo "System settings dumped to $OUTFILE"

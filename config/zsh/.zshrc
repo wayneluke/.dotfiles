@@ -50,15 +50,13 @@ for file in $ZDOTDIR/modules/*.zsh; do
   [ -f "$file" ] && source "$file"
 done
 
-# [[ -f $ZDOTDIR/functions.zsh ]] && source $ZDOTDIR/functions.zsh
-# [[ -f $ZDOTDIR/completions.zsh ]] && source $ZDOTDIR/completions.zsh
-
 #######
 ## Re-Configure the $PATH
 #######
-prepend_to_path $HOME/.local/bin $HOME/.composer/vendor/bin
-# Move Homebrew Paths to the beginning of the path array.
-start_of_path /opt/homebrew/sbin /opt/homebrew/bin
+start_of_path $HOME/.composer/vendor/bin
+start_of_path $XDG_BIN_HOME 
+start_of_path /opt/homebrew/sbin
+start_of_path /opt/homebrew/bin
 
 # load secrets configuration if it exists
 for file in $ZDOTDIR/secrets/*.zsh; do
