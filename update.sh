@@ -1,30 +1,54 @@
 #!/bin/zsh
 
-set -euo pipefail
+# Paths
+SOURCE_DIR="$PWD"
+DEST_HOME="$HOME"
 
-copy_new_files() {
-  local src_dir="$1"
-  local dest_dir="$2"
+# Colors and tags
+INFO="%F{cyan}[INFO]%f"
+SUCCESS="%F{green}[DONE]%f"
+ERROR="%F{red}[ERR ]%f"
 
-  echo "Copying from $src_dir to $dest_dir..."
+# Logging helpers
+log_info() { echo "$INFO $1"; }
+log_success() { echo "$SUCCESS $1"; }
+log_error() { echo "$ERROR $1" >&2; }
 
-  # Use rsync with flags:
-  # -a : archive (recursive, preserve attributes)
-  # -u : skip files that are newer on the receiver (here: skip if dest exists)
-  # --ignore-existing : skip files that already exist
-  rsync -auv --ignore-existing "$src_dir/" "$dest_dir/"
+# Run and check a command
+run_and_check() {
+  local description=$1
+  shift
+  "$@"
+  if [[ $? -eq 0 ]]; then
+    log_success "$description succeeded"
+  else
+    log_error "$description failed"
+  fi
 }
 
-main() {
-  local config_src="./config"
-  local local_src="./local"
-  local config_dest="$HOME/.config"
-  local local_dest="$HOME/.local"
-
-  mkdir -p "$config_dest" "$local_dest"
-
-  copy_new_files "$config_src" "$config_dest"
-  copy_new_files "$local_src" "$local_dest"
+# Sync a file if it’s new or modified
+sync_file() {
+  local src=$1
+  local dest=$2
+  if [[ -f $src ]]; then
+    log_info "Syncing file: $src → $dest"
+    run_and_check "Syncing $src" rsync -au "$src" "$dest"
+  fi
 }
 
-main "$@"
+# Sync a directory tree
+sync_dir() {
+  local src=$1
+  local dest=$2
+  if [[ -d $src ]]; then
+    log_info "Syncing directory: $src → $dest"
+    run_and_check "Syncing $src" rsync -au "$src/" "$dest/"
+  fi
+}
+
+# Main
+log_info "Starting sync..."
+sync_file "$SOURCE_DIR/.zshenv" "$DEST_HOME/.zshenv"
+sync_dir "$SOURCE_DIR/config" "$DEST_HOME/.config"
+sync_dir "$SOURCE_DIR/local" "$DEST_HOME/.local"
+log_info "Sync complete."
