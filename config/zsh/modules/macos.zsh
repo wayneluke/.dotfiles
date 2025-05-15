@@ -15,6 +15,9 @@ if [ "$(uname)" = "Darwin" ]; then
   alias fsites="open ~/sites"
   alias fgo="open "
   
+  alias ds_off="defaults write com.apple.desktopservices DSDontWriteNetworkStores true"
+  alias ds_on="defaults write com.apple.desktopservices DSDontWriteNetworkStores false"
+  
   # Applications
   alias notes="open -a notes.app"
   alias calendar="open -a calendar.app"
