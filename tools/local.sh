@@ -1,3 +1,23 @@
+link_config_dirs() {
+  local src_dir="$HOME/dotfiles/config"
+  local dest_dir="$HOME/.config"
+
+  mkdir -p "$dest_dir"
+
+  find "$src_dir" -type d | while read -r src; do
+    local rel_path="${src#$src_dir/}"
+    local dest="$dest_dir/$rel_path"
+
+    if [[ -e "$dest" || -L "$dest" ]]; then
+      rm -rf "$dest"
+      print "Removed existing $dest"
+    fi
+
+    ln -s "$src" "$dest"
+    print "Linked $src -> $dest"
+  done
+}
+
 link_executables_to_local_bin() {
   local src_dir="${1:-.}"  # Default to current dir if not passed
   local target_dir="$HOME/.local/bin"
