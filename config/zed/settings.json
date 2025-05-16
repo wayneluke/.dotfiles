@@ -31,7 +31,7 @@
   },
   // UI
   "ui_font_size": 16,
-  "ui_font_family": "FiraCode Nerd Font Mono",
+  "ui_font_family": "FiraCode Nerd Font Propo",
   // Editor
   "buffer_font_size": 16,
   "buffer_font_family": "FiraCode Nerd Font Mono",
@@ -54,7 +54,7 @@
     "font_family": "FiraCode Nerd Font Mono"
   },
   "telemetry": {
-    "diagnostics": false,
+    "diagnostics": true,
     "metrics": false
   }
 }
