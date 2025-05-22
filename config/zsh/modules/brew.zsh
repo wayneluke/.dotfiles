@@ -1,5 +1,5 @@
 # Homebrew
-if command -v brew >/dev/null 2>&1; then
+if exists brew; then
 
   ## Clean up Homebrew directory to prevent errors.
   delete_ds_store_files /opt/*

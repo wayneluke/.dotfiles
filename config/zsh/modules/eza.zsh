@@ -1,4 +1,4 @@
-if command -v eza >/dev/null 2>&1; then
+if exists eza; then
   alias ls='eza --git --icons --group-directories-first'
   alias ll='eza -lbhGF --git --icons --group-directories-first'
   alias la='eza -lbhaGF --icons --git --group-directories-first'

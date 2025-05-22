@@ -1,4 +1,4 @@
-if command -v npm >/dev/null 2>&1; then
+if exists npm; then
     # NPM aliases
     alias nr="npm run"
     alias ni="npm install"

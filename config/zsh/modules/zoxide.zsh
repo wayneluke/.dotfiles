@@ -1,4 +1,4 @@
-if command -v zoxide >/dev/null 2>&1; then
+if exists zoxide; then
     eval "$(zoxide init --cmd cd zsh)"
     
     alias downloads="cd ~/downloads && ll"

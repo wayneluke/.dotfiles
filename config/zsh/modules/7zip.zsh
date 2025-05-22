@@ -1,3 +1,3 @@
-if command -v 7zz >/dev/null 2>&1; then
+if exists 7zz; then
   alias 7z=7zz  
 fi

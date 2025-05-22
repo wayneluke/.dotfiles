@@ -1,4 +1,4 @@
-if (command -v thefuck) &>/dev/null; then
+if exists thefuck; then
     eval "$(thefuck --alias fuck)"
     alias wtf="fuck"
 fi

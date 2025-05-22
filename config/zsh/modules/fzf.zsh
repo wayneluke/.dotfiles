@@ -1,3 +1,3 @@
-if (command -v fzf) &>/dev/null; then
+if  exists fzf; then
     eval "$(fzf --zsh)"
 fi

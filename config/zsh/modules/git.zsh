@@ -1,4 +1,4 @@
-if command -v git >/dev/null 2>&1; then
+if exists git; then
     # GIT Stuff
     alias gs='git status'
     alias gc='git commit -m'

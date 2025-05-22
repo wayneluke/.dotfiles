@@ -1,4 +1,4 @@
 # TealDeer (TLDR)
-if (command -v tldr) &>/dev/null; then
+if exists tldr; then
     export TEALDEER_CONFIG_DIR="$HOME/.config/tealdeer"
 fi

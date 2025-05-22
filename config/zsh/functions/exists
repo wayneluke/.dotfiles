@@ -1,0 +1,7 @@
+#
+# if exists command; then
+#   do something
+# fi
+#
+
+command -v "$1" >/dev/null 2>&1
