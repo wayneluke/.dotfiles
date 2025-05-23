@@ -3,3 +3,4 @@
 !.gitkeep
 *.zwc
 /.config/zsh/secrets
+/.config/zsh/plugins
