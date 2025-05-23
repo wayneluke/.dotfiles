@@ -54,7 +54,9 @@ done
 ## Re-Configure the $PATH
 #######
 start_of_path $HOME/.composer/vendor/bin
-start_of_path $XDG_BIN_HOME 
+start_of_path $XDG_BIN_HOME
+start_of_path /opt/homebrew/opt/ruby@3.3/bin
+start_of_path /opt/homebrew/Cellar/mysql@8.4/8.4.5/bin
 start_of_path /opt/homebrew/sbin
 start_of_path /opt/homebrew/bin
 
@@ -70,7 +72,7 @@ done
 # Prompt https://starship.rs
 ##############################################################################
 if command -v starship &>/dev/null; then
-    export STARSHIP_CONFIG="${HOME}/.config/starship/dracula.toml"
+    export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
     export STARSHIP_LOG=error    
     eval "$(starship init zsh)"
 fi

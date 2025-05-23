@@ -2,9 +2,7 @@
 
 autoload -Uz colors && colors
 
-#==============================#
-#        Logging Functions     #
-#==============================#
+# Add some logging functions.
 
 log() {
   local type="$1"; shift
@@ -30,9 +28,15 @@ log_box() {
   print -P "══════════════════════════════════════%{$reset_color%}"
 }
 
-log title "Checking Xcode Command Line Tools"
+# Add function to see if command exists.
 
-if xcode-select -p &>/dev/null; then
+exists() { command -v "$1" >/dev/null 2>&1; }
+
+####
+# Main Script
+####
+
+if exists xcode-select; then
   log success "Xcode Command Line Tools already installed."
 else
   log warning "Xcode Command Line Tools not found."
@@ -48,24 +52,7 @@ else
   log success "Xcode Command Line Tools installed."
 fi
 
-log title "Checking Git"
-
-if command -v git &>/dev/null; then
-  log success "Git is installed."
-else
-  log warning "Git is not installed."
-  check_and_install_xcode_cli
-
-  if command -v git &>/dev/null; then
-    log success "Git is now available after installing Xcode CLT."
-  else
-    log error "Git still not found. Please install manually."
-  fi
-fi
-
-log title "Checking Homebrew"
-
-if command -v brew &>/dev/null; then
+if exists brew; then
   log success "Homebrew is installed."
 else
   log warning "Homebrew is not installed."

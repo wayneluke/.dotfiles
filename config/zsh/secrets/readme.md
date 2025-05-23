@@ -1,4 +1,0 @@
-- Put your secrets files here. 
-- It is recommended to use the .zsh or .env extensions. 
-- Files with these extensions will be ignored by Git.
-- Make sure to back up your secrets separately.

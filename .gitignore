@@ -1,3 +1,5 @@
 /config/zsh/secrets/*.zsh
 /config/zsh/secrets/*.env
 !.gitkeep
+*.zwc
+/.config/zsh/secrets
