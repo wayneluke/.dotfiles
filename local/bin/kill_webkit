@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Search for the processes and extract their PIDs
+PIDS=$(ps -axo pid,command | grep -i "System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent" | grep -v grep | awk '{print $1}')
+
+# Check if any PIDs were found
+if [ -n "$PIDS" ]; then
+    echo "Killing the following processes:"
+    echo "$PIDS"
+    echo "$PIDS" | xargs kill -9
+    echo "Processes terminated."
+else
+    echo "No matching processes found."
+fi

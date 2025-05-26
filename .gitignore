@@ -3,3 +3,4 @@
 /.config/zsh/secrets
 /.config/zsh/plugins
 .config/zsh/.zsh_history
+*.mdb
