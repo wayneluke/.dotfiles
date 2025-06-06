@@ -2,7 +2,7 @@
 
 # chmox - Mark a file or all files in a directory as executable
 
-makex() {
+executable() {
   if [[ -z "$1" ]]; then
     echo "Usage: $0 <file|directory>"
     exit 1
@@ -10,14 +10,14 @@ makex() {
 
   if [[ -d "$1" ]]; then
     echo "Making all files in directory '$1' executable..."
-    find "$1" -type f -exec chmod +x {} \;
+    find "$1" -type f -exec chmod u+x {} \;
   elif [[ -f "$1" ]]; then
     echo "Making file '$1' executable..."
-    chmod +x "$1"
+    chmod u+x "$1"
   else
     echo "Error: '$1' is not a valid file or directory"
     exit 1
   fi
 }
 
-makex "$1"
+executable "$1"

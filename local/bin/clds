@@ -1,0 +1,39 @@
+#!/bin/zsh
+
+# Usage:
+#   clds [directory] [-v|--verbose]
+
+# Defaults
+target_dir="."
+verbose=0
+
+# Parse arguments
+for arg in "$@"; do
+  case "$arg" in
+    -h|--help)
+      echo "Usage:"
+      echo "clds [directory] [-v|--verbose]"
+      exit 0;
+      ;;
+    -v|--verbose)
+      verbose=1
+      ;;
+    *)
+      target_dir="$arg"
+      ;;
+  esac
+done
+
+# Confirm target directory exists
+if [[ ! -d "$target_dir" ]]; then
+  echo "Error: Directory '$target_dir' not found."
+  exit 1
+fi
+
+# Use fd to find and delete .DS_Store files
+if (( verbose )); then
+  echo "Searching and deleting .DS_Store files in '$target_dir'..."
+  fd -H -t f -I -e DS_Store . "$target_dir" -x echo deleting: {} \; -x rm -f {}
+else
+  fd -H -t f -I -e DS_Store . "$target_dir" -x rm -f {}
+fi

@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+# Usage: ./find_system_calls.sh [path]
+
+# Use the first argument as path, or current directory if none provided
+SEARCH_PATH="${1:-.}"
+
+# Run the batched fd + grep search
+fd . "$SEARCH_PATH" -e php -E .git -0 | xargs -0 grep -HnE 'system\([^)]*\)'
