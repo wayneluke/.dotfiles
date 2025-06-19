@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "agent": {
+  "assistant": {
     "default_model": {
       "provider": "openai",
       "model": "gpt-4o"
@@ -22,7 +22,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Tokyo Night"
+    "dark": "Carbonfox"
   },
   "autosave": {
     "after_delay": {
@@ -33,7 +33,6 @@
   "ui_font_size": 16,
   "ui_font_family": "FiraCode Nerd Font Propo",
   // Editor
-  "soft_wrap": "editor_width",
   "buffer_font_size": 16,
   "buffer_font_family": "FiraCode Nerd Font Mono",
   "buffer_font_features": {

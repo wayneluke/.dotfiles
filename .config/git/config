@@ -13,4 +13,4 @@
 	repo = /Users/koleckai/.config/zsh/plugins/zsh-users/zsh-autosuggestions
 	repo = /Users/koleckai/.config/zsh/plugins/zsh-users/zsh-history-substring-search
 [init]
-	defaultBranch = primary
+	defaultBranch = Primary

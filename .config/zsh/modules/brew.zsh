@@ -15,6 +15,7 @@ if exists brew; then
     alias blist='brew list'
     alias bsearch='brew search'
     alias services='brew services'
+    alias freshbrew='brew outdated | while read cask; do brew upgrade $cask; done'
     alias pour='brew install'
     alias drain='brew uninstall'
 
