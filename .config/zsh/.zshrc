@@ -10,7 +10,7 @@ setopt autocd autopushd
 setopt NO_VERBOSE
 
 export EDITOR=nvim
-export VISUAL=zed
+export VISUAL=nvim
 
 #######
 ## Load Functions
