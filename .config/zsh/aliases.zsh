@@ -1,6 +1,6 @@
 # general aliases
-alias edit='zed'
-alias code='zed'
+alias edit='zed -n'
+alias code='zed -n'
 alias cat='bat'
 alias grep='grep --color'
 alias guid='uuidgen | tr "[A-Z]" "[a-z]"'
