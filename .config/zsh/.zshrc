@@ -60,13 +60,9 @@ start_of_path /opt/homebrew/Cellar/mysql@8.4/8.4.5/bin
 start_of_path /opt/homebrew/sbin
 start_of_path /opt/homebrew/bin
 
-# load secrets configuration if it exists
-for file in $ZDOTDIR/secrets/*.zsh; do
-  [ -f "$file" ] && source "$file"
-done
-
 [[ -f $ZDOTDIR/aliases.zsh ]] && source $ZDOTDIR/aliases.zsh 
 [[ -f $ZDOTDIR/completions.zsh ]] && source $ZDOTDIR/completions.zsh 
+[[ -f ~/local.zsh ]] && source ~/local.zsh
 
 ##############################################################################
 # Prompt https://starship.rs

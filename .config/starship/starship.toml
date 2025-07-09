@@ -70,20 +70,13 @@ disabled = false
 # directory
 [directory]
 truncation_length = 3
-truncate_to_repo = true
+truncate_to_repo = false
 format = '[ $path ]($style)[$read_only]($read_only_style)'
 style = 'bg:nord1 fg:nord4'
 disabled = false
 read_only = ' 󰌾 '
 read_only_style = 'bg:nord1 fg:nord11'
 truncation_symbol = ''
-
-[directory.substitutions]
-'Documents' = '󰈙'
-'Downloads' = ' '
-'Music' = ' '
-'Pictures' = ' '
-'Projects' = ' '
 
 # git
 [git_branch]

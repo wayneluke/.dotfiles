@@ -25,4 +25,8 @@ if [ "$(uname)" = "Darwin" ]; then
   alias newtab='open -a iterm .'
   alias o="open -a"
   alias preview='open -a preview'
+  
+  fcopy() { 
+    osascript -e "tell application \"Finder\" to set the clipboard to (POSIX file \"$(pwd)/$1\")" 
+  }
 fi

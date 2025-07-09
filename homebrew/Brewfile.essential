@@ -11,7 +11,6 @@ brew "gh"
 brew "zsh"
 brew "coreutils"
 brew "wget"
-brew "tmux"
 brew "openssl"
 brew "pkg-config"
 
@@ -21,7 +20,6 @@ brew "nvm"
 brew "php"
 brew "composer"
 brew "httpd"
-brew "nginx"
 brew "mysql"
 brew "postgresql"
 brew "redis"
@@ -34,7 +32,6 @@ brew "mongodb/brew/mongodb-community"
 # Web Development - Frontend
 brew "yarn"
 brew "pnpm"
-brew "tailwindcss"
 
 # Web Development - Hugo
 brew "go"
