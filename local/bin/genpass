@@ -1,0 +1,53 @@
+#!/usr/bin/env zsh
+#
+# genpass – Generate a random password (12-20 chars) with an optional prefix
+#
+# macOS-friendly version that falls back to OpenSSL instead of /dev/random.
+#
+# Usage:
+#   genpass            → prints a 12-20 character password
+#   genpass PREFIX     → prints a password that starts with PREFIX
+#
+# Exit codes:
+#   0  success
+#   1  prefix too long (≥21 chars)
+#   2  no entropy source found
+
+set -euo pipefail
+
+# --- Configuration ----------------------------------------------------------
+MIN_LEN=12
+MAX_LEN=20
+CHARS='A-Za-z0-9!@#$%^&*()_+='   # adjust to taste
+# ---------------------------------------------------------------------------
+
+prefix="${1-}"
+prefix_len=${#prefix}
+
+if (( prefix_len > MAX_LEN )); then
+  print -u2 "Error: prefix is ${prefix_len} characters, but max password length is ${MAX_LEN}."
+  exit 1
+fi
+
+# Randomly choose total length in the inclusive [12,20] range
+total_len=$(( RANDOM % (MAX_LEN - MIN_LEN + 1) + MIN_LEN ))
+
+# Make sure the total length can accommodate the prefix
+(( total_len < prefix_len )) && total_len=$prefix_len
+needed_len=$(( total_len - prefix_len ))
+
+# Pick an entropy source that works on macOS
+if command -v openssl >/dev/null 2>&1; then
+  # 48 bytes of base64 gives plenty to filter down
+  rand_stream() { openssl rand -base64 48; }
+elif [[ -r /dev/urandom ]]; then
+  rand_stream() { cat /dev/urandom; }
+else
+  print -u2 "Error: neither OpenSSL nor /dev/urandom is available for entropy."
+  exit 2
+fi
+
+# Generate the random portion: filter to $CHARS and trim to needed length
+random_part=$(LC_ALL=C rand_stream | tr -dc "$CHARS" | head -c "$needed_len")
+
+print -- "${prefix}${random_part}"
