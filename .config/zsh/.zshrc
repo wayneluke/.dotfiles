@@ -62,7 +62,7 @@ start_of_path /opt/homebrew/bin
 
 [[ -f $ZDOTDIR/aliases.zsh ]] && source $ZDOTDIR/aliases.zsh 
 [[ -f $ZDOTDIR/completions.zsh ]] && source $ZDOTDIR/completions.zsh 
-[[ -f ~/local.zsh ]] && source ~/local.zsh
+[[ -f ~/.local.zsh ]] && source ~/.local.zsh
 
 ##############################################################################
 # Prompt https://starship.rs

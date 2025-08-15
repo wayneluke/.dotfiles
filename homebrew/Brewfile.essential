@@ -5,14 +5,28 @@ tap "homebrew/command-not-found"
 tap "homebrew/services"
 tap "shivammathur/php"
 
-# Core Development Tools
+# Core Tools
+brew "curl"
 brew "git"
 brew "gh"
-brew "zsh"
-brew "coreutils"
-brew "wget"
+brew "fzf"
 brew "openssl"
-brew "pkg-config"
+brew "zsh"
+
+# RUST CLI
+brew "bat"
+brew "bottom"
+brew "dust"
+brew "eza"
+brew "fd"
+brew "procs"
+brew "ripgrep"
+brew "sd"
+brew "starship"
+brew "tealdeer"
+brew "tokei"
+brew "yazi"
+brew "zoxide"  
 
 # Web Development - Backend
 brew "node"
@@ -49,10 +63,6 @@ brew "ipython"
 brew "rustup-init"
 brew "rust-analyzer"
 brew "cargo-edit"
-brew "ripgrep"
-brew "fd"
-brew "bat"
-brew "eza"  
 
 # Testing and Utilities
 brew "jq"
@@ -66,8 +76,6 @@ brew "kubectl"
 brew "deno"
 
 # Environment
-brew "starship"
-brew "zoxide"
 brew "mas"
 brew "neovim"
 cask "zed"

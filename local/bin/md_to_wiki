@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Set directory to first argument or use current directory
+DIR="${1:-.}"
+
+# Ensure pandoc is available
+if ! command -v pandoc &> /dev/null; then
+    echo "Error: pandoc is not installed or not in PATH."
+    exit 1
+fi
+
+# Process each .md file in the directory
+for md_file in "$DIR"/*.md; do
+    # Skip if no .md files found
+    [[ -e "$md_file" ]] || continue
+
+    # Get base name without extension
+    base_name="${md_file%.md}"
+
+    # Output filename
+    wiki_file="${base_name}.wiki"
+
+    echo "Converting: $md_file → $wiki_file"
+    pandoc -f markdown -t mediawiki "$md_file" -o "$wiki_file"
+
+    # Check if conversion succeeded
+    if [[ $? -eq 0 ]]; then
+        echo "Success: $wiki_file created."
+    else
+        echo "Error converting $md_file"
+    fi
+done

@@ -9,10 +9,9 @@
 {
   "agent": {
     "default_model": {
-      "provider": "openai",
-      "model": "gpt-4o"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
     },
-    "version": "2"
   },
   "icon_theme": "JetBrains New UI Icons (Dark)",
   "features": {
@@ -48,7 +47,9 @@
     "selections_menu": false
   },
   "tabs": {
-    "git_status": true
+    "git_status": true,
+    "close_position": "left"
+
   },
   "terminal": {
     "dock": "bottom",
