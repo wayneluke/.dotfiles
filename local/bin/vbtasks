@@ -1,5 +1,5 @@
 #!/bin/zsh
 
-php /volumes/secondary/sites/vbulletin/demo/vbevent.php
+/opt/homebrew/bin/php /volumes/secondary/sites/vbulletin/demo/vbevent.php
 sleep 5
-php /volumes/secondary/sites/vbulletin/demo/vbcron.php
+/opt/homebrew/bin/php /volumes/secondary/sites/vbulletin/demo/vbcron.php

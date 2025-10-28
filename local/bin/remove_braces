@@ -1,0 +1,16 @@
+#!/bin/ksh
+
+# Loop through all files in the current directory
+for file in *; do
+    # Skip if not a regular file
+    [ -f "$file" ] || continue
+
+    # Remove { and } from filename
+    newname=$(print -- "$file" | tr -d '{}')
+
+    # Only rename if the name actually changes
+    if [ "$file" != "$newname" ]; then
+        echo "Renaming: $file -> $newname"
+        mv -- "$file" "$newname"
+    fi
+done
