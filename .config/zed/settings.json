@@ -7,13 +7,16 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "preview_tabs": {
+    "enabled": false
+  },
   "agent": {
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
     },
   },
-  "icon_theme": "JetBrains New UI Icons (Dark)",
+  "icon_theme": "Catppuccin Macchiato",
   "features": {
     "edit_prediction_provider": "none"
   },
