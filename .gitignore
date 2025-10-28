@@ -6,3 +6,4 @@
 *.mdb
 /.config/zsh/.zsh_sessions
 /workzone
+/.config/raycast/extensions
