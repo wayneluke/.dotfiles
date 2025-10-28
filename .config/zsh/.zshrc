@@ -9,8 +9,8 @@ zmodload zsh/langinfo
 setopt autocd autopushd
 setopt NO_VERBOSE
 
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=hx
+export VISUAL=hx
 
 #######
 ## Load Functions
@@ -56,7 +56,7 @@ done
 start_of_path $HOME/.composer/vendor/bin
 start_of_path $XDG_BIN_HOME
 start_of_path /opt/homebrew/opt/ruby@3.3/bin
-start_of_path /opt/homebrew/Cellar/mysql@8.4/8.4.5/bin
+start_of_path /opt/homebrew/Cellar/mysql@8.4/8.4.6_3/bin
 start_of_path /opt/homebrew/sbin
 start_of_path /opt/homebrew/bin
 
