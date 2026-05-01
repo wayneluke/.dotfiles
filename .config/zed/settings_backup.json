@@ -7,14 +7,32 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "preview_tabs": {
+    "enabled": false
+  },
   "agent": {
+    "dock": "right",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
     },
-    "version": "2"
   },
-  "icon_theme": "JetBrains New UI Icons (Dark)",
+  "icon_theme": "Catppuccin Macchiato",
   "features": {
     "edit_prediction_provider": "none"
   },
@@ -48,7 +66,7 @@
     "selections_menu": false
   },
   "tabs": {
-    "git_status": true
+    "git_status": true,
   },
   "terminal": {
     "dock": "bottom",
@@ -56,6 +74,6 @@
   },
   "telemetry": {
     "diagnostics": true,
-    "metrics": false
+    "metrics": true
   }
 }

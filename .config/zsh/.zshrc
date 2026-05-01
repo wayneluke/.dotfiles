@@ -12,6 +12,8 @@ setopt NO_VERBOSE
 export EDITOR=hx
 export VISUAL=hx
 
+export SCRIPTS_LOG_DIR="$HOME/.local/var/log/scripts"
+
 #######
 ## Load Functions
 #######
@@ -50,29 +52,30 @@ for file in $ZDOTDIR/modules/*.zsh; do
   [ -f "$file" ] && source "$file"
 done
 
+[[ -f ~/.local.zsh ]] && source ~/.local.zsh
+[[ -f $ZDOTDIR/aliases.zsh ]] && source $ZDOTDIR/aliases.zsh 
+[[ -f $ZDOTDIR/completions.zsh ]] && source $ZDOTDIR/completions.zsh 
+
+
 #######
 ## Re-Configure the $PATH
 #######
 start_of_path $HOME/.composer/vendor/bin
+start_of_path $HOME/.local/herd
 start_of_path $XDG_BIN_HOME
 start_of_path /opt/homebrew/opt/ruby@3.3/bin
-start_of_path /opt/homebrew/Cellar/mysql@8.4/8.4.6_3/bin
 start_of_path /opt/homebrew/sbin
 start_of_path /opt/homebrew/bin
 
-[[ -f $ZDOTDIR/aliases.zsh ]] && source $ZDOTDIR/aliases.zsh 
-[[ -f $ZDOTDIR/completions.zsh ]] && source $ZDOTDIR/completions.zsh 
-[[ -f ~/.local.zsh ]] && source ~/.local.zsh
-
-##############################################################################
+#######
 # Prompt https://starship.rs
-##############################################################################
+#######
 if command -v starship &>/dev/null; then
     export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
     export STARSHIP_LOG=error    
     eval "$(starship init zsh)"
 fi
-## End TODO
+
 
 fortune | lolcat
 

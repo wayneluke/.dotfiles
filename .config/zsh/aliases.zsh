@@ -1,7 +1,8 @@
 # general aliases
-alias edit='zed -n'
-alias code='zed -n'
 alias cat='bat'
+alias cdls='cd $1 && ls'
+alias code='zed -n'
+alias edit='zed -n'
 alias grep='grep --color'
 alias guid='uuidgen | tr "[A-Z]" "[a-z]"'
 alias img='imgcat'
@@ -17,7 +18,6 @@ alias cls='clear && ll'
 alias h='history -10'
 alias r='source ~/.config/zsh/.zshrc'
 alias x="exit"
-alias d="rm"
 
 # IP ADDRESSES
 alias ipv4="curl -4 ifconfig.me"

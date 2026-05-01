@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.httpd.plist
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.httpd.plist

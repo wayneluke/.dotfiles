@@ -1,0 +1,11 @@
+	"logo": {
+		"type": "kitty-direct",
+		"source": "~/.config/fastfetch/images/Asuka01.png",
+		"height": 20,
+		"width": 30,
+		"position": "left",
+		"padding": {
+			"top": 1,
+			"right": 1,
+		},
+	},

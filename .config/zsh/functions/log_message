@@ -1,0 +1,12 @@
+    function log_message() {
+        local level="${1:-INFO}" # Default to INFO if no level is provided
+        local message="${2:-}"
+
+        if [[ -z "$message" ]]; then
+            echo "Usage: log_message <LEVEL> <MESSAGE>"
+            return 1
+        fi
+
+        local timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+        echo "[$timestamp] [$level] $message"
+    }

@@ -10,7 +10,7 @@
 
     if [[ -n "${config_files[$1]}" ]]; then
         if [[ "$1" == "hosts" ]]; then
-            sudo nano "${config_files[$1]}"
+            sudo hx "${config_files[$1]}"
         else
             zed "${config_files[$1]}"
         fi

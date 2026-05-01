@@ -7,3 +7,4 @@
 /.config/zsh/.zsh_sessions
 /workzone
 /.config/raycast/extensions
+.dotfiles.code-workspace
