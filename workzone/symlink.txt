@@ -1,2 +1,0 @@
-[ -d ~/.local/bin ] && rm -rf ~/.local/bin
-ln -s ~/.dotfiles/.config/bin ~/.local/bin
