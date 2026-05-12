@@ -14,6 +14,8 @@ export VISUAL=hx
 
 export SCRIPTS_LOG_DIR="$HOME/.local/var/log/scripts"
 
+bindkey -e
+
 #######
 ## Load Functions
 #######
